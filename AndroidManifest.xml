@@ -16,19 +16,19 @@
         
         
          <activity
-            android:name="cn.ifavor.utils.project.ViewUtilsHolderActivity"
+            android:name="sample.ViewUtilsHolderActivity"
             android:label="@string/app_name" >
            
         </activity>
         
         <activity
-            android:name="cn.ifavor.utils.project.ViewUtilsActivity"
+            android:name="sample.ViewUtilsActivity"
             android:label="@string/app_name" >
             
         </activity>
         
         <activity
-            android:name="cn.ifavor.utils.project.DBUtilsActivity"
+            android:name="sample.DBUtilsActivity"
             android:label="@string/app_name" >
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
