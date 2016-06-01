@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+@SuppressWarnings("unchecked")
 public class ViewUtils {
 	
 	public static void bind(Activity activity) {
@@ -40,7 +41,7 @@ public class ViewUtils {
 	 * @throws Exception
 	 */
 	private static void bindActivity( Activity activity) throws Exception {
-		Class clazz = activity.getClass();
+		Class<? extends Activity> clazz = activity.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field f : fields){
 			f.setAccessible(true);
@@ -102,14 +103,12 @@ public class ViewUtils {
 	 * @throws Exception
 	 */
 	public static void unbindActivity(Activity activity) throws Exception {
-		Class clazz = activity.getClass();
+		Class<? extends Activity> clazz = activity.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field f : fields){
 			f.setAccessible(true);
 			ViewInject viewInject = f.getAnnotation(ViewInject.class);
 			if (viewInject != null){
-				int resId = viewInject.value();
-				View view = activity.findViewById(resId);
 				f.set(activity, null);
 			}
 		}
@@ -121,7 +120,7 @@ public class ViewUtils {
 	 * @param view
 	 */
 	private static void bindView(Object obj, View v) throws Exception{
-		Class clazz = obj.getClass();
+		Class<? extends Object> clazz = obj.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field f : fields){
 			f.setAccessible(true);
@@ -177,4 +176,19 @@ public class ViewUtils {
 		}
 	}
 	
+	public static <T extends View> T findById(View v, int resId){
+		if (v == null){
+			return null;
+		}
+		
+		return (T)v.findViewById(resId);
+	}
+	
+	public static <T extends View> T findById(Activity activity, int resId){
+		if (activity == null){
+			return null;
+		}
+		
+		return (T)activity.findViewById(resId);
+	}
 }
