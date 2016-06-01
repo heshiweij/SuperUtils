@@ -4,13 +4,11 @@
 
 Simple Android development framework, including the principle of DB and IOC. 
 
-# Sample
+ 
+## Samples 
 
-## Bind view for activty
 
 ### Activity
-
-View
 
 
 	public class ViewUtilsActivity extends Activity {
@@ -41,16 +39,14 @@ View
 
 
 
-onClick
+### onClick
 	
-single
 
 	@OnClick(R.id.btn1)
 	private void buttonClick(View view) {
 		
 	}
 	
-multiple
 	
 	@OnClick({R.id.btn1, R.id.btn2})
 	private void buttonClick(View view) {
@@ -111,7 +107,6 @@ Custom your Javabean first
 		}
 	
 		// setter and getter
-		
 	}
 
 and then, create sql by DBUtils
