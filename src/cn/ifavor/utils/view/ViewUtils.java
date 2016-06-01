@@ -27,9 +27,9 @@ public class ViewUtils {
 	}
 	
 	
-	public static void unbind(Activity activity) {
+	public static void unbind(Object obj) {
 		try {
-			unbindActivity(activity);
+			unbindObj(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,14 +102,14 @@ public class ViewUtils {
 	 * @param activity
 	 * @throws Exception
 	 */
-	public static void unbindActivity(Activity activity) throws Exception {
-		Class<? extends Activity> clazz = activity.getClass();
+	private static void unbindObj(Object obj) throws Exception {
+		Class<? extends Object> clazz = obj.getClass();
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field f : fields){
 			f.setAccessible(true);
 			ViewInject viewInject = f.getAnnotation(ViewInject.class);
 			if (viewInject != null){
-				f.set(activity, null);
+				f.set(obj, null);
 			}
 		}
 	}
