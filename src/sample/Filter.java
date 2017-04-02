@@ -65,5 +65,9 @@ public class Filter {
 		return "Filter [id=" + id + ", name=" + name + ", addr=" + addr
 				+ ", age=" + age + "]";
 	}
+
+	public String testGit(){
+		
+	}
 	
 }
